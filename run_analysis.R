@@ -37,10 +37,10 @@
 # Appropriately labels the data set with descriptive variable names.
 colnames(activity_labels) <- c("Activity ID", "Activity")
 colnames(features) <-c("Feature ID", "Feature")
-colnames(X_test) <- c(features$`Feature ID`) #convert to numeric?
+colnames(X_test) <- c(features$Feature) 
 colnames(y_test) <-c("Activity ID")
 colnames(subject_test) <-c("Subject ID")
-colnames(X_train) <- c(features$`Feature ID`) #convert to numeric?
+colnames(X_train) <- c(features$Feature) 
 colnames(y_train) <- c("Activity ID")
 colnames(subject_train) <- c("Subject ID") #convert to numeric?
 
