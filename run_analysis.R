@@ -1,11 +1,6 @@
 
-# 
-# Extracts only the measurements on the mean and standard deviation for each measurement. 
-# 
-# Uses descriptive activity names to name the activities in the data set
-# 
-# 
-# From the data set in step 4, creates a second, independent tidy data set with the average of each variable for each activity and each subject.
+
+
 
 
 #read files
@@ -38,11 +33,12 @@
 colnames(activity_labels) <- c("Activity ID", "Activity")
 colnames(features) <-c("Feature ID", "Feature")
 colnames(X_test) <- c(features$Feature) 
-colnames(y_test) <-c("Activity ID")
+colnames(y_test) <-c("Activity")
 colnames(subject_test) <-c("Subject ID")
 colnames(X_train) <- c(features$Feature) 
-colnames(y_train) <- c("Activity ID")
+colnames(y_train) <- c("Activity")
 colnames(subject_train) <- c("Subject ID") #convert to numeric?
+
 
 # 1.  Merge the training and the test sets to create one data set.
 
@@ -52,26 +48,35 @@ ytesttrain <-rbind(y_test, y_train)
 stesttrain <-rbind(subject_test, subject_train)
 
 # combine features, activity and subject columns for each measurement set
-d<-cbind(stesttrain, ytesttrain, xtesttrain, stringsAsFactosr=FALSE)
+d<-cbind(stesttrain, ytesttrain, xtesttrain, stringsAsFactors=FALSE)
 
-# move to before merge
-for (x in 1:length(d$`Activity ID`)) {
-    if (d$`Activity ID`[x] == 1) {
-        d$`Activity ID`[x] <- "Walking"
+# Replace activity Id's with activity names
+for (x in 1:length(d$Activity)) {
+    if (d$Activity[x] == 1) {
+        d$Activity[x] <- "Walking"
     }
-    if (d$`Activity ID`[x] == 2) {
-        d$`Activity ID`[x] <- "Walking Upstairs"
+    if (d$Activity[x] == 2) {
+        d$Activity[x] <- "Walking Upstairs"
     }
-    if (d$`Activity ID`[x] == 3) {
-        d$`Activity ID`[x] <- "Walking Downstairs"
+    if (d$Activity[x] == 3) {
+        d$Activity[x] <- "Walking Downstairs"
     }
-    if (d$`Activity ID`[x] == 4) {
-        d$`Activity ID`[x] <- "Sitting"
+    if (d$Activity[x] == 4) {
+        d$Activity[x] <- "Sitting"
     }
-    if (d$`Activity ID`[x] == 5) {
-        d$`Activity ID`[x] <- "Standing"
+    if (d$Activity[x] == 5) {
+        d$Activity[x] <- "Standing"
     }
-    if (d$`Activity ID`[x] == 6) {
-        d$`Activity ID`[x] <- "Laying"
+    if (d$Activity[x] == 6) {
+        d$Activity[x] <- "Laying"
     }
 }
+
+# Extracts only the measurements on the mean and standard deviation
+# for each measurement, adds to new dataframe
+msddata<-grep("mean\\(\\)|std\\(\\)", features$Feature)
+msd<-d[, msddata]
+
+# From the data set in step 4, creates a second, independent
+# tidy data set with the average of each variable for each 
+# activity and each subject.
