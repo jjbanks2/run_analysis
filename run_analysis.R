@@ -52,4 +52,26 @@ ytesttrain <-rbind(y_test, y_train)
 stesttrain <-rbind(subject_test, subject_train)
 
 # combine features, activity and subject columns for each measurement set
-d<-cbind(stesttrain, ytesttrain, xtesttrain, stringsAsFactor=FALSE)
+d<-cbind(stesttrain, ytesttrain, xtesttrain, stringsAsFactosr=FALSE)
+
+# move to before merge
+for (x in 1:length(d$`Activity ID`)) {
+    if (d$`Activity ID`[x] == 1) {
+        d$`Activity ID`[x] <- "Walking"
+    }
+    if (d$`Activity ID`[x] == 2) {
+        d$`Activity ID`[x] <- "Walking Upstairs"
+    }
+    if (d$`Activity ID`[x] == 3) {
+        d$`Activity ID`[x] <- "Walking Downstairs"
+    }
+    if (d$`Activity ID`[x] == 4) {
+        d$`Activity ID`[x] <- "Sitting"
+    }
+    if (d$`Activity ID`[x] == 5) {
+        d$`Activity ID`[x] <- "Standing"
+    }
+    if (d$`Activity ID`[x] == 6) {
+        d$`Activity ID`[x] <- "Laying"
+    }
+}
