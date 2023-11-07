@@ -28,7 +28,7 @@ How to run the script:
 
 3.  After code is run, file tidy.txt will be located in the same working directory.
 
-4.  See code_book.txt in this repository for description of all variables.
+4.  See code_book.md in this repository for description of all variables.
 
 
 
