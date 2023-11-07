@@ -1,13 +1,13 @@
 
 # Read files
-# activity_labels<-read.table("activity_labels.txt", header=FALSE)
-# features<-read.table("features.txt", header=FALSE)
-# X_test<- read.table("./test/X_test.txt",header=FALSE)
-# y_test<- read.table("./test/y_test.txt",header=FALSE)
-# subject_test<- read.table("./test/subject_test.txt",header=FALSE)
-# X_train<- read.table("./train/X_train.txt",header=FALSE)
-# y_train<- read.table("./train/y_train.txt",header=FALSE)
-# subject_train<-read.table("./train/subject_train.txt",header=FALSE)
+activity_labels<-read.table("activity_labels.txt", header=FALSE)
+features<-read.table("features.txt", header=FALSE)
+X_test<- read.table("./test/X_test.txt",header=FALSE)
+y_test<- read.table("./test/y_test.txt",header=FALSE)
+subject_test<- read.table("./test/subject_test.txt",header=FALSE)
+X_train<- read.table("./train/X_train.txt",header=FALSE)
+y_train<- read.table("./train/y_train.txt",header=FALSE)
+subject_train<-read.table("./train/subject_train.txt",header=FALSE)
 
 # Appropriately label the dataset with descriptive variable names
 colnames(activity_labels) <- c("Activity ID", "Activity")
